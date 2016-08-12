@@ -1,0 +1,29 @@
+{
+  "name": "gsearch",
+  "version": "0.0.1",
+  "description": "API for making google search requests with captcha support",
+  "main": "index.js",
+  "scripts": {
+    "test": "pending"
+  },
+  "repository": {
+    "type": "git",
+    "url": "pending"
+  },
+  "keywords": [
+    "google",
+    "search",
+    "captcha",
+    "deathbycaptcha",
+    "api",
+    "nodejs",
+    "npm"
+  ],
+  "author": "Vikas Gautam <v33vikasgautam@gmail.com> (http://mytrikks.blogspot.com)",
+  "license": "MIT",
+  "dependencies": {
+    "deasync": "^0.1.7",
+    "request": "^2.74.0",
+    "whacko": "^0.19.1"
+  }
+}
