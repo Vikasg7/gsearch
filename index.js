@@ -9,16 +9,33 @@
 
    // Method for making sync http request to simplyfy the api
    var get = deasync(function (options, cb) {
+      options.headers = {
+         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+      }
       session.get(options, function (err, resp) {
-         if (err || resp.statusCode !== 200) {
+         if (resp.statusCode === 302) {
+            if (resp.headers.location.search("sorry") > -1) {
+               cb(null, {
+                  err: null,
+                  resp: resp,
+                  parsed: whacko.load(resp.body)
+               })
+            } else {
+               var redirectedResp = get({
+                  uri: resp.headers.location,
+                  followRedirect: false
+               })
+               cb(null, redirectedResp)
+            }
+         } else if ((err || resp.statusCode !== 200)) {
             cb(null, {
-               err: err.toString(),
-               resp: null
+               err: resp.statusCode + " - " + resp.statusText
             })
          } else {
             cb(null, {
-               err: resp,
-               resp: null
+               err: null,
+               resp: resp,
+               parsed: whacko.load(resp.body)
             })
          }
       })
@@ -42,37 +59,36 @@
       
       // Requesting page
       var firstResp = get({
-         uri: url + "/search",
+         uri: self.host + "/search",
          qs: self.params,
          followRedirect: false
       })
 
-      if (!firstResp.err) {
-         cb(null, firstResp)      
-         return
-      }
       // 302 means captcha case
       if (firstResp.resp.statusCode === 302) {
          console.log("Captcha Case")
-         var solvedResp = self.solveCaptcha(firstResp.resp)
+         var solvedResp = self.solveCaptcha(firstResp)
          cb(null, solvedResp)
+         return
       }
+      cb(null, firstResp)      
    }
 
    // Sync function
    gsearch.prototype.getSync = deasync(gsearch.prototype.get)
 
-   gsearch.prototype.solveCaptcha = function (googleCaptchaHtml) {
+   gsearch.prototype.solveCaptcha = function (googleCaptchaResp) {
       var self = this
 
-      var $ = whacko.load(googleCaptchaHtml.body)
+      var $ = googleCaptchaResp.parsed
       var captchaId = $('input[name=id]').attr('value');
       var continueUrl = $('input[name=continue]').attr('value')
       var formAction = $('form').attr('action')
       var imgURL = $('img').attr('src')
+      console.log("captchaId :-",captchaId, "\ncontinueUrl:-", continueUrl, "\nformAction:-", formAction, "\nimgURL:-", imgURL)
 
       // Getting captcha image
-      var imgResp = self.get({
+      var imgResp = get({
          url: imgURL,
          encoding: null
       })
@@ -113,9 +129,6 @@
       })
    })
 
-   module.exports = function (options) {
-      return new gsearch(options)
-   }
-
+   module.exports = gsearch
 
 })(module, require)
