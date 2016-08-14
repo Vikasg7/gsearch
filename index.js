@@ -5,7 +5,7 @@
    var session = require("request").defaults({jar: true})
    // For parsing html, not a memory leaker like cheerio
    var whacko = require("whacko")
-   // var URL = require("url")
+   var URL = require("url")
 
    // Method for making sync http request to simplyfy the api
    var get = deasync(function (options, cb) {
@@ -14,12 +14,17 @@
       }
       session.get(options, function (err, resp) {
          if (resp.statusCode === 302) {
-            if (resp.headers.location.search("sorry") > -1) {
-               cb(null, {
-                  err: null,
-                  resp: resp,
-                  parsed: whacko.load(resp.body)
+            var pathName = URL.parse(resp.headers.location, true)
+            // Checking if google redirected to captcha page
+            if (pathName !== "/search") {
+               var captchaPage = get({
+                  uri: resp.headers.location,
+                  followRedirect: false
                })
+               captchaPage.resp.statusCode = 302
+               cb(null, captchaPage)
+            // First google search url will always redirect, so
+            // following the redirection manually.
             } else {
                var redirectedResp = get({
                   uri: resp.headers.location,
