@@ -2,13 +2,13 @@
   "name": "gsearch",
   "version": "0.0.1",
   "description": "API for making google search requests with captcha support",
-  "main": "index.js",
+  "main": "gsearch.js",
   "scripts": {
-    "test": "pending"
+    "test": ""
   },
   "repository": {
     "type": "git",
-    "url": "pending"
+    "url": "https://github.com/Vikasg7/gsearch.git"
   },
   "keywords": [
     "google",

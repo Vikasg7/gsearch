@@ -36,7 +36,7 @@
       var self = this
       self.options = options
       self.params = {}
-      self.host = "https://www.google.com"
+      self.host = options.host || "https://www.google.com"
    }
    
    gsearch.prototype.get = function (searchString, cb) {
