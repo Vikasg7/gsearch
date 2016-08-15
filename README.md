@@ -46,7 +46,7 @@
          err: null,
          resp: {}, // a response object from request library. use respObj.resp.body to get the html.
          parsed: {} // parsed html using whacko lib (a fork of cheerio). 
-                       so you can apply css selectors directly.
+                    // so you can apply css selectors directly.
       }
       ````
 
