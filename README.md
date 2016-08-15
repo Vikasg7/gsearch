@@ -37,7 +37,7 @@
    ````
 
 - <h5>API methods</h5>
-   - `gs.get(searchString, cb)`
+   - `gs.get(searchString, cb)`<br>
       This is an async function which returns a `cb` with `(nullVar, respObj)`.<br>
       `nullVar` is a variable with `null` value.<br>
       `respObj` is an object with following structure :-
@@ -45,11 +45,12 @@
       respObj = {
          err: null,
          resp: {}, // a response object from request library. use respObj.resp.body to get the html.
-         parsed: {} // parsed html using whacko lib (a fork of cheerio). so you can apply css selectors directly.
+         parsed: {} // parsed html using whacko lib (a fork of cheerio). 
+                       so you can apply css selectors directly.
       }
       ````
 
-   - `gs.getSync(seachString)`
+   - `gs.getSync(seachString)`<br>
       This is a sync function which returns 'respObj' as described above.
 
 - <h5>Note on callbacks</h5>
