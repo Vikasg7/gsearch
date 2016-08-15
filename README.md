@@ -54,7 +54,7 @@
 
 - <h5>Note on callbacks</h5>
    The format of callbacks for this API is *not* `(err, resp)` but is `(nullVar, respObj)` where `err` is a property of `respObj`.<br>
-   This is because I have used deasync lib which throws `err` if `(err, resp)` format if used for the callback which make the code to break.<r>
+   This is because I have used deasync lib which throws `err` if `(err, resp)` format is used for the callback which make the code to break.<r>
    Error handling is more easier as we can use `if` syntax instead of `try catch`. 
 
 <h4>Test/Usage</h4>
