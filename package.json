@@ -1,8 +1,8 @@
 {
   "name": "gsearch-node",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API for making google search requests with captcha support",
-  "main": "gsearch.js",
+  "main": "gsearch-node.js",
   "scripts": {
     "test": ""
   },
