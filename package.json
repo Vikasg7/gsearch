@@ -1,5 +1,5 @@
 {
-  "name": "gsearch",
+  "name": "gsearch-node",
   "version": "0.0.1",
   "description": "API for making google search requests with captcha support",
   "main": "gsearch.js",
@@ -17,7 +17,8 @@
     "deathbycaptcha",
     "api",
     "nodejs",
-    "npm"
+    "npm",
+    "google captcha solver"
   ],
   "author": "Vikas Gautam <v33vikasgautam@gmail.com> (http://mytrikks.blogspot.com)",
   "license": "MIT",

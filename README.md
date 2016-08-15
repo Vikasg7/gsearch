@@ -1,8 +1,8 @@
-<h1>gsearch</h1>
+<h1>gsearch-node</h1>
 <h5>API for making google search requests with captcha support</h5>
 
 <h4>Installation</h4>
-`npm install -S gsearch`
+`npm install -S gsearch-node`
 
 <h4>API explained</h4>
 - <h5>Initailization (with deathbycaptcha as captcha solver)</h5>
@@ -10,7 +10,7 @@
    var deathByCaptcha = require("deathbycaptcha")
    var dbc = new deathByCaptcha("username", "password")
 
-   var gsearch = require("gsearch")
+   var gsearch = require("gsearch-node")
    var gs = new gsearch({solver: dbc})
 
    ````
@@ -65,7 +65,7 @@
    // var deathByCaptcha = require("deathbycaptcha")
    // var dbc = new deathByCaptcha("username", "password")
 
-   var gsearch = require("gsearch")
+   var gsearch = require("gsearch-node")
    var gs = new gsearch({solver: {}}) // {solver: dbc} for using deathbycaptcha api
 
    console.log("Sync version")
