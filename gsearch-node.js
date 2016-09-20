@@ -14,7 +14,11 @@
          "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
       }
       session.get(options, function (err, resp) {
-         if ((err || resp.statusCode !== 200) && resp.statusCode !== 503) {
+         if (err) {
+            cb(null, {
+               err: err.code
+            })
+         } else if (resp.statusCode !== 200 && resp.statusCode !== 503) {
             cb(null, {
                err: resp.statusCode + " - " + resp.statusText
             })
