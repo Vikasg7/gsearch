@@ -71,11 +71,12 @@
       var self = this
 
       var $ = googleCaptchaResp.parsed
+      var $$ = whacko.load($("noscript").text())
       var q = $('input[name=q]').attr('value')
-      var captchaId = $('input[name=id]').attr('value')
+      var captchaId = $$("img").attr("src").match(/\?id=(.*?)\&/)[1]
       var continueUrl = $('input[name=continue]').attr('value')
       var formAction = $('form').attr('action')
-      var imgURL = URL.resolve("https://ipv4.google.com", $('img').attr('src'))
+      var imgURL = URL.resolve("https://ipv4.google.com", $$("img").attr("src"))
 
       // Getting captcha image
       var imgResp = get({
