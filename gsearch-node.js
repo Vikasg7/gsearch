@@ -39,7 +39,7 @@
       }
       var self = this
       self.options = options
-      self.params = {}
+      self.params = options.params || {}
       self.host = options.host || "https://www.google.com"
    }
    

@@ -5,7 +5,7 @@
 `npm install -S gsearch-node`
 
 <h4>API explained</h4>
-- <h5>Initailization (with deathbycaptcha as captcha solver)</h5>
+- Initailization (with deathbycaptcha as captcha solver)  
    ````javascript
    var deathByCaptcha = require("deathbycaptcha")
    var dbc = new deathByCaptcha("username", "password")
@@ -15,7 +15,7 @@
 
    ````
 
-- <h5>Initailization (with custom solver)</h5>
+- Initailization (with custom solver)  
    ````javascript
    var captchaSolver = {
       solve: function (img, cb) {
@@ -36,7 +36,7 @@
    }
    ````
 
-- <h5>API methods</h5>
+- API methods  
    - `gs.get(searchString, cb)`<br>
       This is an async function which returns a `cb` with `(nullVar, respObj)`.<br>
       `nullVar` is a variable with `null` value.<br>
@@ -53,12 +53,12 @@
    - `gs.getSync(seachString)`<br>
       This is a sync function which returns 'respObj' as described above.
 
-- <h5>Note on callbacks</h5>
+- Note on callbacks  
    The format of callbacks for this API is *not* `(err, resp)` but is `(nullVar, respObj)` where `err` is a property of `respObj`.<br>
    This is because I have used deasync lib which throws `err` if `(err, resp)` format is used for the callback which make the code to break.<r>
    Error handling is more easier as we can use `if` syntax instead of `try catch`. 
 
-<h4>Test/Usage</h4>
+<h4>Test/Usage</h4>  
 ````javascript
 (function () {
 
