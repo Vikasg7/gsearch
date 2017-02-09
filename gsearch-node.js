@@ -54,6 +54,8 @@
          qs: self.params
       })
 
+      // require("fs").writeFileSync("./temp.html", firstResp.resp.body, "utf-8")
+
       // 503 means captcha case
       if (firstResp.resp.statusCode === 503 && 
           firstResp.resp.request.uri.href.search("/sorry")) {
@@ -71,12 +73,17 @@
       var self = this
 
       var $ = googleCaptchaResp.parsed
+
+      // for second type of google captcha 
       var $$ = whacko.load($("noscript").text())
+      // taking care of both type of captcha throw systems by google.
+      var imgSrc = $("img").attr("src") || $$("img").attr("src")
+      
       var q = $('input[name=q]').attr('value')
-      var captchaId = $$("img").attr("src").match(/\?id=(.*?)\&/)[1]
+      var captchaId = imgSrc.match(/\?id=(.*?)\&/)[1]
       var continueUrl = $('input[name=continue]').attr('value')
       var formAction = $('form').attr('action')
-      var imgURL = URL.resolve("https://ipv4.google.com", $$("img").attr("src"))
+      var imgURL = URL.resolve("https://ipv4.google.com", imgSrc)
 
       // Getting captcha image
       var imgResp = get({
