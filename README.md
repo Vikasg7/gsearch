@@ -6,7 +6,8 @@
 
 <h4>API explained</h4>
 - Initailization (with deathbycaptcha as captcha solver)  
-   ```
+   
+   ```javascript
    var deathByCaptcha = require("deathbycaptcha")
    var dbc = new deathByCaptcha("username", "password")
 
@@ -15,7 +16,8 @@
    ```
 
 - Initailization (with custom solver)  
-   ```
+   
+   ```javascript
    var captchaSolver = {
       solve: function (img, cb) {
          //doSomeCaptchaSolving
@@ -40,7 +42,8 @@
       This is an async function which returns a `cb` with `(nullVar, respObj)`.<br>
       `nullVar` is a variable with `null` value.<br>
       `respObj` is an object with following structure :-
-      ```
+      
+      ```javascript
       respObj = {
          err: null,
          resp: {}, // a response object from request library. use respObj.resp.body to get the html.
@@ -58,7 +61,8 @@
    Error handling is more easier as we can use `if` syntax instead of `try catch`. 
 
 <h4>Test/Usage</h4>  
-```
+
+```javascript
 (function () {
 
    // var deathByCaptcha = require("deathbycaptcha")
