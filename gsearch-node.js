@@ -47,6 +47,7 @@
       var self = this
 
       self.params.q = searchString
+      self.params.oq = searchString
       
       // Requesting page
       var firstResp = get({

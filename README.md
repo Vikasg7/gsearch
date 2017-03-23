@@ -6,17 +6,16 @@
 
 <h4>API explained</h4>
 - Initailization (with deathbycaptcha as captcha solver)  
-   ````javascript
+   ```
    var deathByCaptcha = require("deathbycaptcha")
    var dbc = new deathByCaptcha("username", "password")
 
    var gsearch = require("gsearch-node")
    var gs = new gsearch({solver: dbc})
-
-   ````
+   ```
 
 - Initailization (with custom solver)  
-   ````javascript
+   ```
    var captchaSolver = {
       solve: function (img, cb) {
          //doSomeCaptchaSolving
@@ -34,21 +33,21 @@
          })
       }
    }
-   ````
+   ```
 
 - API methods  
    - `gs.get(searchString, cb)`<br>
       This is an async function which returns a `cb` with `(nullVar, respObj)`.<br>
       `nullVar` is a variable with `null` value.<br>
       `respObj` is an object with following structure :-
-      ````javascript
+      ```
       respObj = {
          err: null,
          resp: {}, // a response object from request library. use respObj.resp.body to get the html.
          parsed: {} // parsed html using whacko lib (a fork of cheerio). 
                     // so you can apply css selectors directly.
       }
-      ````
+      ```
 
    - `gs.getSync(seachString)`<br>
       This is a sync function which returns 'respObj' as described above.
@@ -59,7 +58,7 @@
    Error handling is more easier as we can use `if` syntax instead of `try catch`. 
 
 <h4>Test/Usage</h4>  
-````javascript
+```
 (function () {
 
    // var deathByCaptcha = require("deathbycaptcha")
@@ -92,7 +91,7 @@
    })
 
 })()
-````
+```
 
 <h4>Donate</h4>
 <p>If this repository helps you anyhow, please don't mind coming back and 
