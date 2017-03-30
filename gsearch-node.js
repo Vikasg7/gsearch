@@ -1,4 +1,5 @@
 (function (module, require) {
+   var decache = require("decache")
    // for making sync APIs
    var deasync = require("deasync")
    // if jar is true, the request handle would remember cookies for future use
@@ -55,11 +56,26 @@
          qs: self.params
       })
 
-      // require("fs").writeFileSync("./temp.html", firstResp.resp.body, "utf-8")
+      var $ = firstResp.parsed
+      if ($("noscript").length === 0) {
+         // decaching request module
+         decache("request")
+         // getting a new request handle
+         session = require("request")
+         firstResp = get({
+            uri: self.host + "/search",
+            qs: self.params
+         })
+         // This is important line of code. that is - to remember cookies after
+         // first captcha response (containing noscript element). It also reduces 
+         // no. of captchas used.
+         session = session.defaults({jar: true})
+      }
 
       // 503 means captcha case
       if (firstResp.resp.statusCode === 503 && 
           firstResp.resp.request.uri.href.search("/sorry")) {
+         // require("fs").writeFileSync("./temp.html", firstResp.resp.body, "utf-8")
          var solvedResp = self.solveCaptcha(firstResp)
          cb(null, solvedResp)
          return

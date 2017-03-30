@@ -1,6 +1,6 @@
 {
   "name": "gsearch-node",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "API for making google search requests with captcha support",
   "main": "gsearch-node.js",
   "scripts": {
@@ -23,8 +23,9 @@
   "author": "Vikas Gautam <v33vikasgautam@gmail.com> (http://mytrikks.blogspot.com)",
   "license": "MIT",
   "dependencies": {
-    "deasync": "^0.1.7",
-    "request": "^2.74.0",
-    "whacko": "^0.19.1"
+    "deasync": "latest",
+    "request": "latest",
+    "whacko": "latest",
+    "decache": "latest"
   }
 }
